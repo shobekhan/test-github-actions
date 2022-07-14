@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Test github actions",
   "scripts": {
-    "test": "npm test"
+    "test": "jest"
   },
   "author": "Suyeb Bagdadi",
   "license": "ISC",
