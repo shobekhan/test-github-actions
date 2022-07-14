@@ -10,10 +10,10 @@ describe('Test function AddNumber', () => {
 
     it('checks function returns valid numbers', () => {
         result = AddNumber(10, 100);
-        expect(result).toBe(110);
+        expect(result).toBe(1110);
 
         result = AddNumber(100, 100);
-        expect(result).toBe(200);
+        expect(result).toBe(1200);
     });
 
     it('checks function does not returns in valid numbers', () => {
