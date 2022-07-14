@@ -13,7 +13,7 @@ describe('Test function AddNumber', () => {
         expect(result).toBe(110);
 
         result = AddNumber(100, 100);
-        expect(result).toBe(2001);
+        expect(result).toBe(200);
     });
 
     it('checks function does not returns in valid numbers', () => {
