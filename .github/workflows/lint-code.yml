@@ -24,6 +24,6 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           author_name: Suyeb Bagdadi
-          author_email: suyeb.bagdadi@nintendo.de
+          author_email: shobekhan@yahoo.com
           message: 'Clean code with eslint'
           add: '*.js'
