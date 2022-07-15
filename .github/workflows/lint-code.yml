@@ -17,7 +17,7 @@ jobs:
         run: npm install
 
       - name: Update source code
-        run: npm lint
+        run: npm run lint
 
       - name: Setting Github user.email
         run: git config --global user.email "shobekhan@yahoo.com"
