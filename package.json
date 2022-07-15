@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Test github actions",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint \"src/**\" --fix"
   },
   "author": "Suyeb Bagdadi",
   "license": "ISC",
