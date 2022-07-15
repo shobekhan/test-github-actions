@@ -1,4 +1,4 @@
-name: Lint source code
+name: Lint source codee
 on: push
 
 jobs:
