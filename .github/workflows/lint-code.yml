@@ -2,8 +2,7 @@ name: Lint source code
 on: push
 
 jobs:
-  run:
-    name: Lint with ESLint
+  es-lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -20,10 +19,17 @@ jobs:
       - name: Update source code
         run: npm run lint
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: Suyeb Bagdadi
-          author_email: shobekhan@yahoo.com
-          message: 'Clean code with eslint'
-          add: '*.js'
+      - name: Setting Github user.email
+        run: git config --global user.email "shobekhan@yahoo.com"
+
+      - name: Setting Github user.name
+        run: git config --global user.name "SB"
+
+      - name: Adding fixes for committing
+        run: git add .
+
+      - name: Committing ESLint fixes
+        run: git commit -m "fixed ESLint issues"
+
+      - name: Pushing fixes to current PR branch
+        run: git push
