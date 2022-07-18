@@ -4,6 +4,8 @@ on: push
 jobs:
   es-lint:
     runs-on: ubuntu-latest
+    outputs:
+      docs_changed: ${{ steps.check_file_changed.outputs.docs_changed }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -36,23 +38,22 @@ jobs:
           # Set the output named "docs_changed"
           Write-Host "::set-output name=docs_changed::$HasDiff"
 
-      - shell: pwsh
-          # steps.<step_id>.outputs.<output name>
-          if: steps.check_file_changed.outputs.docs_changed == 'True'
-          steps:
-            - name: Setting Github user.email
-              run: git config --global user.email "shobekhan@yahoo.com"
+  conditional_job:
+    runs-on: ubuntu-latest
+    needs: [ es-lint ]
+    if: needs.es-lint.outputs.docs_changed == 'True'
+    steps:
+      - name: Setting Github user.email
+        run: git config --global user.email "shobekhan@yahoo.com"
 
-            - name: Setting Github user.name
-              run: git config --global user.name "SB"
+      - name: Setting Github user.name
+        run: git config --global user.name "SB"
 
-            - name: Adding fixes for committing
-              run: git add .
+      - name: Adding fixes for committing
+        run: git add .
 
-            - name: Committing ESLint fixes
-              run: git commit -m "fixed ESLint issues"
+      - name: Committing ESLint fixes
+        run: git commit -m "fixed ESLint issues"
 
-            - name: Pushing fixes to current PR branch
-              run: git push
-
-
+      - name: Pushing fixes to current PR branch
+        run: git push
