@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 hasTypeScriptFiles=`git diff --name-only`
-
-if [[ $hasTypeScriptFiles == *".ts"* ]]; then
+fileTypes='.ts'
+if [[ $hasTypeScriptFiles == *"$fileTypes"* ]]; then
     git config --global user.email "shobekhan@yahoo.com"
     git config --global user.name "SB"
     git add .
