@@ -35,6 +35,9 @@ jobs:
           $SourceDiff = $diff | Where-Object { $_ -match '^src/' -or $_ -match '^__tests__/' }
           $HasDiff = $SourceDiff.Length -gt 0
           
+          echo "Value of Diff"
+          echo $HasDiff
+          
           # Set the output named "docs_changed"
           Write-Host "::set-output name=docs_changed::$HasDiff"
 
