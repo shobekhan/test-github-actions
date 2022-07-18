@@ -3,4 +3,4 @@ const AddNumber = (x: number, y: number): number => {
 }
 
 // testaaaaa
-export default AddNumber;
+export default AddNumber
