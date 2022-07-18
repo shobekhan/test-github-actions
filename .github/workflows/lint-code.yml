@@ -25,9 +25,9 @@ jobs:
         run: npm run lint
 
       - name: Give proper permissions
-        run: chmod 777 ./commit-lint-files.sh
+        run: chmod 777 ./.github/workflows/commit-lint-files.sh
         shell: bash
 
       - name: Push linted TS files
-        run: ./commit-lint-files.sh
+        run: ./.github/workflows/commit-lint-files.sh
         shell: bash
