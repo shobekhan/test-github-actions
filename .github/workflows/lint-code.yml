@@ -29,11 +29,15 @@ jobs:
         id: check_file_changed
         run: |
           # Diff HEAD with the previous commit
-          $diff = git diff --name-only HEAD^ HEAD
+          $diff = git diff --name-only
           
           # Check if a file under docs/ or with the .md extension has changed (added, modified, deleted)
           $SourceDiff = $diff | Where-Object { $_ -match '^src/' -or $_ -match '^__tests__/' }
           $HasDiff = $SourceDiff.Length -gt 0
+          
+          echo "Value of Diff"
+          echo $HasDiff
+          echo $diff
           
           # Set the output named "docs_changed"
           Write-Host "::set-output name=docs_changed::$HasDiff"
@@ -43,6 +47,22 @@ jobs:
     needs: [ es-lint ]
     if: needs.es-lint.outputs.docs_changed == 'True'
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update source code
+        run: npm run lint
+
       - name: Setting Github user.email
         run: git config --global user.email "shobekhan@yahoo.com"
 
