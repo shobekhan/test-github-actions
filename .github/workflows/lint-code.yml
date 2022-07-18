@@ -37,6 +37,7 @@ jobs:
           
           echo "Value of Diff"
           echo $HasDiff
+          echo $diff
           
           # Set the output named "docs_changed"
           Write-Host "::set-output name=docs_changed::$HasDiff"
