@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 hasTypeScriptFiles=`git diff --name-only`
 fileTypes='.ts'
