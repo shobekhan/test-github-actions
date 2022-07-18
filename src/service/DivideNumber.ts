@@ -3,4 +3,4 @@ const DivideNumber = (x: number, y: number): number => {
 }
 
 // testaaa
-export default DivideNumber;
+export default DivideNumber
