@@ -19,17 +19,29 @@ jobs:
       - name: Update source code
         run: npm run lint
 
-      - name: Setting Github user.email
-        run: git config --global user.email "shobekhan@yahoo.com"
+      - name: Check if files were updated
+        uses: dorny/paths-filter@v2
+          id: changes
+          with:
+            filters: |
+              src:
+                - 'src/**'
 
-      - name: Setting Github user.name
-        run: git config --global user.name "SB"
+      # only run if something was updated
+      - if: steps.changes.outputs.src == 'true'
+      steps:
+        - name: Setting Github user.email
+          run: git config --global user.email "shobekhan@yahoo.com"
 
-      - name: Adding fixes for committing
-        run: git add .
+        - name: Setting Github user.name
+          run: git config --global user.name "SB"
 
-      - name: Committing ESLint fixes
-        run: git commit -m "fixed ESLint issues"
+        - name: Adding fixes for committing
+          run: git add .
 
-      - name: Pushing fixes to current PR branch
-        run: git push
+        - name: Committing ESLint fixes
+          run: git commit -m "fixed ESLint issues"
+
+        - name: Pushing fixes to current PR branch
+          run: git push
+
