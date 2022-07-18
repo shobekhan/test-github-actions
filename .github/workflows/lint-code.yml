@@ -29,5 +29,5 @@ jobs:
         shell: bash
 
       - name: Push linted TS files
-        run: ./commit-lint-files.sh
+        run: ./.github/workflows/commit-lint-files.sh
         shell: bash
