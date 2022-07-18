@@ -43,6 +43,22 @@ jobs:
     needs: [ es-lint ]
     if: needs.es-lint.outputs.docs_changed == 'True'
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Update source code
+        run: npm run lint
+
       - name: Setting Github user.email
         run: git config --global user.email "shobekhan@yahoo.com"
 
