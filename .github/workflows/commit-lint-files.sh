@@ -8,4 +8,5 @@ if [[ $hasTypeScriptFiles == *"$fileTypes"* ]]; then
     git add .
     git commit -m "Fixed ESLint issues"
     git push
+    echo "Ran Commit"
 fi
